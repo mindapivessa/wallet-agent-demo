@@ -14,6 +14,7 @@ import Image from "next/image"
 import { EthereumSvg } from "@/public/ethereumSvg"
 import { UsdcSvg } from "@/public/usdcSvg"
 import { UniSvg } from "@/public/uniSvg"
+import { ActionsList } from "@/components/ActionsList"
 
 type Message = {
   id: number
@@ -76,60 +77,7 @@ export default function Page() {
       setTimeout(() => {
         setMessages(prev => [...prev, { 
           id: prev.length + 1, 
-          content: (
-            <div className="flex flex-col gap-2">
-              <div className="flex flex-col gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestedPrompt("Send tokens")}
-                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
-                >
-                  Send tokens/NFTs
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestedPrompt("Request testnet ETH")}
-                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
-                >
-                  Get testnet ETH
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestedPrompt("Create new wallet")}
-                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
-                >
-                  Create wallet
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestedPrompt("Swap tokens")}
-                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
-                >
-                  Swap tokens
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestedPrompt("Trade tokens")}
-                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
-                >
-                  Trade tokens
-                </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestedPrompt("View wallet balance")}
-                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
-                >
-                  View balance
-                </Button>
-              </div>
-            </div>
-          ),
+          content: <ActionsList onActionClick={handleSuggestedPrompt} />,
           sender: "assistant" 
         }])
       }, 1000)
