@@ -1,20 +1,18 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRight, ArrowUpDown, Bot, Clock, Loader2, Plus, QrCode, SendHorizontal, Share2, Wallet, X } from "lucide-react"
+import { ArrowRight, ArrowUpDown, Bot, Clock, Loader2, Plus, QrCode, SendHorizontal, Share2, Wallet } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
 import Image from "next/image"
 import { EthereumSvg } from "@/public/ethereumSvg"
 import { UsdcSvg } from "@/public/usdcSvg"
 import { UniSvg } from "@/public/uniSvg"
 import { ActionsList } from "@/components/ActionsList"
+import { SettingsDrawer } from "@/components/SettingsDrawer"
 
 type Message = {
   id: number
@@ -97,8 +95,8 @@ export default function Page() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-black p-4 font-sans">
       <Card className="w-full max-w-[360px] h-[517px] bg-zinc-900 text-white border-zinc-800 relative overflow-hidden">
-        <div className="flex h-full">
-          <div className={`flex flex-col transition-all duration-300 ${isDrawerOpen ? 'w-[100%]' : 'w-full'}`}>
+        <div className="flex h-full relative">
+          <div className={`flex flex-col w-full`}>
             {!isWalletOpen && (
               <CardHeader className="border-b border-zinc-800 p-2">
                 <div className="flex items-center justify-between">
@@ -305,58 +303,19 @@ export default function Page() {
               </div>
             )}
           </div>
-          <div className={`bg-zinc-800 transition-all duration-300 overflow-hidden ${isDrawerOpen ? 'w-[%]' : 'w-0'}`}>
-            <div className="flex flex-col h-full">
-              <div className="p-4 border-b border-zinc-700">
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center space-x-4">
-                    <Button variant="ghost" size="icon" onClick={toggleDrawer} className="hover:bg-zinc-700">
-                      <X className="w-5 h-5" />
-                    </Button>
-                    <h2 className="text-lg font-semibold">Autonomous Mode</h2>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <Switch
-                      id="autonomous-mode"
-                      checked={isAutonomous}
-                      onCheckedChange={setIsAutonomous}
-                      className="data-[state=checked]:bg-zinc-700"
-                    />
-                  </div>
-                </div>
-              </div>
-              <ScrollArea className="flex-grow">
-                <div className="p-4 space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="strategy">Strategy</Label>
-                    <Select value={strategy} onValueChange={setStrategy}>
-                      <SelectTrigger id="strategy" className="w-full bg-zinc-700 border-zinc-600 text-white hover:bg-zinc-600 focus:bg-zinc-600">
-                        <SelectValue placeholder="Select a strategy" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-zinc-700 border-zinc-600 text-white">
-                        <SelectItem value="conservative" className="hover:bg-zinc-600">Conservative</SelectItem>
-                        <SelectItem value="high-risk" className="hover:bg-zinc-600">High-risk, high-reward</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="max-supply">Max supply allowed per day</Label>
-                    <div className="flex items-center">
-                      <Input
-                        id="max-supply"
-                        type="number"
-                        value={maxSupply}
-                        onChange={(e) => setMaxSupply(e.target.value)}
-                        className="w-full bg-zinc-700 border-zinc-600 text-white rounded-r-none focus:bg-zinc-600"
-                      />
-                      <div className="bg-zinc-600 text-white px-3 py-2 rounded-r-md border border-l-0 border-zinc-600">
-                        ETH
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ScrollArea>
-            </div>
+          <div className={`absolute top-0 right-0 h-full w-full transition-transform duration-300 ${
+            isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}>
+            <SettingsDrawer
+              isOpen={isDrawerOpen}
+              onClose={toggleDrawer}
+              isAutonomous={isAutonomous}
+              onAutonomousChange={setIsAutonomous}
+              strategy={strategy}
+              onStrategyChange={setStrategy}
+              maxSupply={maxSupply}
+              onMaxSupplyChange={setMaxSupply}
+            />
           </div>
         </div>
       </Card>
