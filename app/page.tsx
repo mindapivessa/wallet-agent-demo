@@ -22,10 +22,6 @@ type Message = {
 }
 
 export default function Page() {
-  return <ChatWindowCard />
-}
-
-export function ChatWindowCard() {
   const [loading, setLoading] = React.useState(true)
   const [messages, setMessages] = React.useState<Message[]>([])
   const [input, setInput] = React.useState("")
