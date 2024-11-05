@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRight, ArrowUpDown, Bot, Clock, Loader2, Plus, QrCode, SendHorizontal, Wallet, LogOut } from "lucide-react"
+import { ArrowUp, ArrowUpDown, Bot, Clock, Loader2, Plus, QrCode, SendHorizontal, Wallet, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -150,75 +150,75 @@ export default function Page() {
                     </div>
                   </div>
                   <ScrollArea className="flex-grow">
-                    <div className="p-3">
-                      <div className="flex flex-col items-center gap-4 mb-8">
-                        <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center">
+                    <div className="p-4">
+                      <div className="flex flex-col items-center gap-2 my-2">
+                        <div className="w-16 h-16 rounded-full border border-zinc-700 flex items-center justify-center">
                           <Image 
                             src="/paprika.jpg" 
                             alt="Wallet avatar" 
-                            width={32} 
-                            height={32}
+                            width={68} 
+                            height={68}
                             className="rounded-full object-cover" 
                           />
                         </div>
-                        <div className="text-base font-semibold">paprika.base.eth</div>
-                        <div className="text-3xl font-bold">$1,200.25</div>
+                        <div className="text-base font-semibold mt-2">paprika.base.eth</div>
+                        <div className="text-3xl font-semibold">$1,200.25</div>
                       </div>
-                      <div className="grid grid-cols-3 gap-4 mb-8">
-                        <Button variant="secondary" className="text-zinc-50 flex flex-col items-center gap-2 h-auto py-4 bg-zinc-100/5 hover:bg-zinc-100/10">
+                      <div className="grid grid-cols-3 gap-4 my-4">
+                        <Button variant="secondary" className="text-zinc-50 flex flex-col items-center gap-2 h-auto py-3 bg-zinc-100/5 hover:bg-zinc-100/10">
                           <Plus className="w-5 h-5" />
                           <span>Buy</span>
                         </Button>
-                        <Button variant="secondary" className="text-zinc-50 flex flex-col items-center gap-2 h-auto py-4 bg-zinc-100/5 hover:bg-zinc-100/10">
-                          <ArrowRight className="w-5 h-5" />
+                        <Button variant="secondary" className="text-zinc-50 flex flex-col items-center gap-2 h-auto py-3 bg-zinc-100/5 hover:bg-zinc-100/10">
+                          <ArrowUp className="w-5 h-5" />
                           <span>Send</span>
                         </Button>
-                        <Button variant="secondary" className="text-zinc-50 flex flex-col items-center gap-2 h-auto py-4 bg-zinc-100/5 hover:bg-zinc-100/10">
+                        <Button variant="secondary" className="text-zinc-50 flex flex-col items-center gap-2 h-auto py-3 bg-zinc-100/5 hover:bg-zinc-100/10">
                           <ArrowUpDown className="w-5 h-5" />
                           <span>Swap</span>
                         </Button>
                       </div>
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between p-3 hover:bg-zinc-800 rounded-lg cursor-pointer transition-colors duration-200">
+                      <div className="space-y-0.5">
+                        <div className="flex items-center justify-between p-2 hover:bg-zinc-800 rounded-lg cursor-pointer transition-colors duration-200">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                               <EthereumSvg />
                             </div>
                             <div>
-                              <div className="font-medium">Ethereum</div>
+                              <div className="font-semibold">Ethereum</div>
                               <div className="text-sm text-zinc-400">0.45 ETH</div>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="font-medium">$1115.16</div>
+                            <div className="font-semibold">$1115.16</div>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between p-3 hover:bg-zinc-800 rounded-lg cursor-pointer transition-colors duration-200">
+                        <div className="flex items-center justify-between p-2 hover:bg-zinc-800 rounded-lg cursor-pointer transition-colors duration-200">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                               <UsdcSvg />
                             </div>
                             <div>
-                              <div className="font-medium">USDC Coin</div>
+                              <div className="font-semibold">USDC Coin</div>
                               <div className="text-sm text-zinc-400">76 USDC</div>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="font-medium">$76.84</div>
+                            <div className="font-semibold">$76.84</div>
                           </div>
                         </div>
-                        <div className="flex items-center justify-between p-3 hover:bg-zinc-800 rounded-lg cursor-pointer transition-colors duration-200">
+                        <div className="flex items-center justify-between p-2 hover:bg-zinc-800 rounded-lg cursor-pointer transition-colors duration-200">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
                               <UniSvg />
                             </div>
                             <div>
-                              <div className="font-medium">Kibble</div>
+                              <div className="font-semibold">Kibble</div>
                               <div className="text-sm text-zinc-400">20 KIBBLE</div>
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className="font-medium">$20.00</div>
+                            <div className="font-semibold">$20.00</div>
                           </div>
                         </div>
                       </div>
