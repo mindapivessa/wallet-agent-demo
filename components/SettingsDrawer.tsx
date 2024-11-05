@@ -29,7 +29,7 @@ export function SettingsDrawer({
   return (
     <div className="w-[360px] bg-zinc-900 h-full">
       <div className="flex flex-col h-full">
-        <Button variant="ghost" size="icon" onClick={onClose} className="w-6 h-6 rounded bg-zinc-800 p-0 hover:bg-zinc-700 hover:text-zinc-50 m-1">
+        <Button variant="ghost" size="icon" onClick={onClose} className="w-6 h-6 rounded p-0 text-zinc-50 hover:bg-zinc-900 hover:text-zinc-50 m-1">
             <X className="w-3 h-3" />
         </Button>
         <ScrollArea className="flex-grow">
@@ -40,7 +40,7 @@ export function SettingsDrawer({
                 id="autonomous-mode"
                 checked={isAutonomous}
                 onCheckedChange={onAutonomousChange}
-                className="data-[state=checked]:bg-zinc-800 [&>span[data-state=checked]]:bg-indigo-400"
+                className="data-[state=checked]:bg-zinc-700 data-[state=unchecked]:bg-zinc-700 [&>span[data-state=checked]]:bg-indigo-400 [&>span[data-state=unchecked]]:bg-zinc-50"
               />
             </div>
             <div className="space-y-1">

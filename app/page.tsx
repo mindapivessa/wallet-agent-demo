@@ -265,7 +265,7 @@ export default function Page() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleSuggestedPrompt("What actions can I take?")}
-                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
+                    className="bg-zinc-800 text-zinc-50 hover:text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
                   >
                     What actions can I take?
                   </Button>
@@ -273,7 +273,7 @@ export default function Page() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleSuggestedPrompt("Supply 2 ETH on Aave")}
-                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
+                    className="bg-zinc-800 text-zinc-50 hover:text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
                   >
                     Supply 2 ETH on Aave
                   </Button>
@@ -281,7 +281,7 @@ export default function Page() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleSuggestedPrompt("Swap 100 USDC for ETH")}
-                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
+                    className="bg-zinc-800 text-zinc-50 hover:text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
                   >
                     Swap 100 USDC for ETH
                   </Button>
