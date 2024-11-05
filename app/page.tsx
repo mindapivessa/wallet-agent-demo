@@ -151,7 +151,7 @@ export default function Page() {
                   </div>
                   <ScrollArea className="flex-grow">
                     <div className="p-4">
-                      <div className="flex flex-col items-center gap-2 my-2">
+                      <div className="flex flex-col items-center gap-1 my-2">
                         <div className="w-16 h-16 rounded-full border border-zinc-700 flex items-center justify-center">
                           <Image 
                             src="/paprika.jpg" 
@@ -164,7 +164,7 @@ export default function Page() {
                         <div className="text-base font-semibold mt-2">paprika.base.eth</div>
                         <div className="text-3xl font-semibold">$1,200.25</div>
                       </div>
-                      <div className="grid grid-cols-3 gap-4 my-4">
+                      <div className="grid grid-cols-3 gap-4 mb-4 mt-6">
                         <Button variant="secondary" className="text-zinc-50 flex flex-col items-center gap-2 h-auto py-3 bg-zinc-100/5 hover:bg-zinc-100/10">
                           <Plus className="w-5 h-5" />
                           <span>Buy</span>
@@ -213,8 +213,8 @@ export default function Page() {
                               <UniSvg />
                             </div>
                             <div>
-                              <div className="font-semibold">Kibble</div>
-                              <div className="text-sm text-zinc-400">20 KIBBLE</div>
+                              <div className="font-semibold">Uniswap</div>
+                              <div className="text-sm text-zinc-400">20 UNI</div>
                             </div>
                           </div>
                           <div className="text-right">
