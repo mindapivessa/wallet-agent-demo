@@ -5,7 +5,7 @@ import { ArrowRight, ArrowUpDown, Bot, Clock, Loader2, Plus, QrCode, SendHorizon
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardHeader, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Label } from "@/components/ui/label"
@@ -17,7 +17,7 @@ import { UniSvg } from "@/public/uniSvg"
 
 type Message = {
   id: number
-  content: string
+  content: string | JSX.Element
   sender: "user" | "assistant"
 }
 
@@ -69,7 +69,81 @@ export default function Page() {
   }
 
   const handleSuggestedPrompt = (prompt: string) => {
-    setInput(prompt)
+    setMessages(prev => [...prev, { id: prev.length + 1, content: prompt, sender: "user" }])
+    
+    // Special handling for "What actions can I take?"
+    if (prompt === "What actions can I take?") {
+      setTimeout(() => {
+        setMessages(prev => [...prev, { 
+          id: prev.length + 1, 
+          content: (
+            <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSuggestedPrompt("Send tokens")}
+                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
+                >
+                  Send tokens/NFTs
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSuggestedPrompt("Request testnet ETH")}
+                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
+                >
+                  Get testnet ETH
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSuggestedPrompt("Create new wallet")}
+                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
+                >
+                  Create wallet
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSuggestedPrompt("Swap tokens")}
+                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
+                >
+                  Swap tokens
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSuggestedPrompt("Trade tokens")}
+                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
+                >
+                  Trade tokens
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSuggestedPrompt("View wallet balance")}
+                  className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-sm py-2 pr-4 w-full text-left justify-start"
+                >
+                  View balance
+                </Button>
+              </div>
+            </div>
+          ),
+          sender: "assistant" 
+        }])
+      }, 1000)
+      return
+    }
+
+    // Handle other prompts with default response
+    setTimeout(() => {
+      setMessages(prev => [...prev, { 
+        id: prev.length + 1, 
+        content: "I can help you with that. What would you like to know specifically?",
+        sender: "assistant" 
+      }])
+    }, 1000)
   }
 
   return (
@@ -212,11 +286,18 @@ export default function Page() {
                       messages.map((message) => (
                         <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
                           <div className={`flex items-start gap-1 max-w-[80%] ${message.sender === 'user' ? 'flex-row-reverse' : ''}`}>
-                            <Avatar className={`w-6 h-6 ${message.sender === 'user' ? 'bg-blue-600' : 'bg-zinc-800'}`}>
-                              <AvatarFallback className="text-xs">{message.sender === 'user' ? 'U' : 'A'}</AvatarFallback>
-                              <AvatarImage src={message.sender === 'user' ? '/placeholder-user.jpg' : '/placeholder-assistant.jpg'} />
+                            <Avatar className={`w-6 h-6 ${message.sender === 'user' ? 'bg-transparent' : 'bg-transparent'}`}>
+                              {message.sender === 'user' ? (
+                                <AvatarImage src="/paprika.jpg" className="object-cover border border-zinc-700 rounded-full" />
+                              ) : (
+                                <Bot className="w-6 h-6 text-white" />
+                              )}
                             </Avatar>
-                            <div className={`rounded-lg p-2 text-sm ${message.sender === 'user' ? 'bg-blue-600' : 'bg-zinc-800'}`}>
+                            <div className={`rounded-lg p-2 text-sm ${
+                              message.sender === 'user' 
+                                ? 'bg-zinc-800 text-indigo-400' 
+                                : 'bg-zinc-800'
+                            }`}>
                               {message.content}
                             </div>
                           </div>
@@ -229,12 +310,12 @@ export default function Page() {
             </CardContent>
             {!isWalletOpen && (
               <div className="p-2 border-t border-zinc-800">
-                <div className="flex flex-wrap gap-1 mb-2">
+                <div className="overflow-x-auto flex gap-2 mb-2 no-scrollbar">
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => handleSuggestedPrompt("What actions can I take?")}
-                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 hover:text-white text-xs py-1 h-auto"
+                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
                   >
                     What actions can I take?
                   </Button>
@@ -242,7 +323,7 @@ export default function Page() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleSuggestedPrompt("Supply 2 ETH on Aave")}
-                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 hover:text-white text-xs py-1 h-auto"
+                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
                   >
                     Supply 2 ETH on Aave
                   </Button>
@@ -250,7 +331,7 @@ export default function Page() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleSuggestedPrompt("Swap 100 USDC for ETH")}
-                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 hover:text-white text-xs py-1 h-auto"
+                    className="bg-zinc-800 text-zinc-50 border-zinc-700 hover:bg-zinc-700 text-xs py-1 h-auto whitespace-nowrap flex-none"
                   >
                     Swap 100 USDC for ETH
                   </Button>
