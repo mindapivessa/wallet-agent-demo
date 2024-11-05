@@ -29,8 +29,8 @@ export function SettingsDrawer({
   return (
     <div className="w-[360px] bg-zinc-900 h-full">
       <div className="flex flex-col h-full">
-        <Button variant="ghost" size="icon" onClick={onClose} className="hover:text-szinc-50 hover:bg-zinc-700 m-1">
-            <X className="w-5 h-5" />
+        <Button variant="ghost" size="icon" onClick={onClose} className="w-6 h-6 rounded bg-zinc-800 p-0 hover:bg-zinc-700 hover:text-zinc-50 m-1">
+            <X className="w-3 h-3" />
         </Button>
         <ScrollArea className="flex-grow">
           <div className="p-4 space-y-6">

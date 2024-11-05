@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRight, ArrowUpDown, Bot, Clock, Loader2, Plus, QrCode, SendHorizontal, Share2, Wallet } from "lucide-react"
+import { ArrowRight, ArrowUpDown, Bot, Clock, Loader2, Plus, QrCode, SendHorizontal, Wallet, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -103,7 +103,7 @@ export default function Page() {
                   <Button 
                     variant="ghost" 
                     size="icon" 
-                    className="w-6 h-6 rounded bg-zinc-800 p-0 hover:bg-zinc-700"
+                    className="w-6 h-6 rounded hover:bg-zinc-800 p-0 hover:text-zinc-50"
                     onClick={toggleWallet}
                   >
                     <Wallet className="w-3 h-3" />
@@ -113,7 +113,7 @@ export default function Page() {
                     <Button 
                       variant="ghost" 
                       size="icon" 
-                      className={`w-6 h-6 rounded bg-zinc-800 p-0 hover:bg-zinc-700 ${isAutonomous ? 'animate-pulse' : ''}`}
+                      className={`w-6 h-6 rounded hover:bg-zinc-800 p-0 ${isAutonomous ? 'animate-pulse' : ''}`}
                       onClick={toggleDrawer}
                     >
                       <Bot className={`w-3 h-3 ${isAutonomous ? 'text-green-500' : 'text-white'}`} />
@@ -128,18 +128,22 @@ export default function Page() {
                   <div className="p-2 border-b border-zinc-800">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
-                        <Button variant="ghost" size="icon" className="w-6 h-6">
+                        <Button variant="ghost" size="icon" className="w-6 h-6 p-0 hover:bg-zinc-800 hover:text-zinc-50">
                           <Clock className="w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="w-6 h-6">
+                        <Button variant="ghost" size="icon" className="w-6 h-6 p-0 hover:bg-zinc-800 hover:text-zinc-50">
                           <QrCode className="w-4 h-4" />
                         </Button>
                       </div>
                       <div className="flex items-center gap-1">
-                        <Button variant="ghost" size="icon" className="w-6 h-6">
-                          <Share2 className="w-4 h-4" />
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="w-6 h-6 p-0 hover:bg-zinc-800 hover:text-zinc-50"
+                        >
+                          <LogOut className="w-4 h-4" />
                         </Button>
-                        <Button variant="ghost" size="icon" className="w-6 h-6" onClick={toggleWallet}>
+                        <Button variant="ghost" size="icon" className="w-6 h-6 p-0 hover:bg-zinc-800 hover:text-zinc-50" onClick={toggleWallet}>
                           <Bot className="w-4 h-4" />
                         </Button>
                       </div>
